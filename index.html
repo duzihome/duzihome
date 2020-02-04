@@ -516,10 +516,19 @@
 				list.xinzeng = localStorage.getItem("xinzeng")
 			}
 
-			if(localStorage.getItem("members") != null) {
+			let check = false;
+			if(localStorage.getItem('check') != null) {
+				if(localStorage.getItem('check') == "20200205_1")
+					check = true;
+
+			}
+
+			if(localStorage.getItem("members") != null & check) {
 
 				list.members = JSON.parse(localStorage.getItem("members"));
+
 			} else {
+				localStorage.setItem("check", '20200205_1');
 
 				list.members = [{
 						"liuyan": "[]",
