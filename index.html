@@ -407,7 +407,7 @@
 					let now = (new Date()).getTime();
 					let old = localStorage.getItem("temp_time");
 					let second = (now - old) / 1000;
-					if(second < 5) {
+					if(second < 60) {
 						mui.alert("发送消息失败，你提交得过于频繁，请稍后再试")
 					} else {
 						localStorage.setItem("temp_time", now);
