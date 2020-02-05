@@ -518,7 +518,7 @@
 
 			let check = false;
 			if(localStorage.getItem('check') != null) {
-				if(localStorage.getItem('check') == "20200205_1")
+				if(localStorage.getItem('check') == checktime)
 					check = true;
 
 			}
@@ -528,7 +528,7 @@
 				list.members = JSON.parse(localStorage.getItem("members"));
 
 			} else {
-				localStorage.setItem("check", '20200205_1');
+				localStorage.setItem("check", checktime);
 
 				list.members = [{
 						"liuyan": "[]",
