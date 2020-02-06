@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>肚子同好</title>
-		<meta name="Keywords" content="肚子,肚子同好,打肚子,肚子同好网站"/>
-		<meta name="Description" content="一个肚子同好实践交友网站，你可以上传信息让别人看到，也可以在这里找到同城的同好好友。"/>
+		<meta name="Keywords" content="肚子,肚子同好,打肚子,肚子同好网站" />
+		<meta name="Description" content="一个肚子同好实践交友网站，你可以上传信息让别人看到，也可以在这里找到同城的同好好友。" />
 		<meta name="shenma-site-verification" content="811a9db62e27d9d5588af6ba6411697d_1580876562">
 		<meta name="sogou_site_verification" content="zfUvOkQpJW" />
 		<meta name="baidu-site-verification" content="p2icII6bjP" />
@@ -19,12 +19,16 @@
 		.w_20,
 		.w_35,
 		.w_25,
-		.w_80 {
+		.w_80,
+		.w_30 {
 			display: inline;
 			float: left;
 			font-size: 14px;
 			color: #424242;
 			text-align: center;
+			line-height: 30px;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		
 		.w_left {
@@ -47,6 +51,10 @@
 			width: 25%;
 		}
 		
+		.w_30 {
+			width: 30%;
+		}
+		
 		.w_35 {
 			width: 35%;
 		}
@@ -64,6 +72,8 @@
 		.cylist {
 			margin-left: 0px!important;
 			margin-right: 0px!important;
+			padding-top: 3px!important;
+			padding-bottom: 3px!important;
 		}
 		
 		.cylistdetail {
@@ -252,12 +262,12 @@
 									</div>
 								</a>
 								<div class="mui-collapse-content cylistdetail">
-									<div class="w_15">QQ</div>
+									<div class="w_20">QQ</div>
 
-									<div v-if="list.qqopen == '公开'" class="w_35 w_left w_right">
+									<div v-if="list.qqopen == '公开'" class="w_30 w_left w_right">
 										{{list.qq}}
 									</div>
-									<div v-else class="w_35 w_left w_right">
+									<div v-else class="w_30 w_left w_right">
 										{{list.qqopen}}
 									</div>
 									<div class="w_15">
@@ -267,8 +277,8 @@
 										{{list.buwei}}
 									</div>
 
-									<div class="w_15">年龄</div>
-									<div class="w_35 w_left w_right">
+									<div class="w_20">年龄</div>
+									<div class="w_30 w_left w_right">
 										{{list.age}}
 									</div>
 									<div class="w_15">
@@ -277,11 +287,12 @@
 									<div class="w_35 w_left w_right">
 										{{list.mudi}}
 									</div>
-									
-									<div style="width: 100%;display: block;">
-										<p style="padding-left: 4px;">介绍：{{list.info}}
+
+									<div v-if="list.info" style="width: 100%;display: block;">
+										<p style="padding-left: 10px;line-height: 24px;">介绍：{{list.info}}
 										</p>
 									</div>
+
 									<hr style="margin-top: 0px;margin-bottom: 0px;" />
 
 									<!--
