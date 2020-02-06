@@ -948,6 +948,41 @@
 				});
 				
 			});
+			function dataQuchong(data){
+				let num = 0;
+				for (var i = 0; i < data.length  ; i++) {
+					for (var j = i+1; j < data.length; j++) {
+						if(data[i].qq == data[j].qq){
+							data.splice(j ,1);
+						}
+					}
+				}
+			}
+			function dataSort(data) {
+				function sort(a, b) {
+					function getQuan(a){
+						if(a.permiss == "虚假")
+							return 0;
+						if(a.permiss == "未验证")
+							return 1;
+						if(a.permiss == "认证")
+							return 2;
+						if(a.permiss == "妹子")
+							return 3;
+						if(a.permiss == "管理")
+							return 4;
+					}
+					if((getQuan(a)-getQuan(b))!=0){
+						return getQuan(b)-getQuan(a);
+					}else{
+						return getQuan(b)-getQuan(a);
+					}
+				}
+				data.sort(sort);
+			}
+
+			dataQuchong(list.members);
+			dataSort(list.members)
 		</script>
 		<script>
 var _hmt = _hmt || [];
