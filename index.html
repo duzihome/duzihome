@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>肚子同好</title>
-                <meta name="shenma-site-verification" content="811a9db62e27d9d5588af6ba6411697d_1580876562">
-		<meta name="sogou_site_verification" content="zfUvOkQpJW"/>
+		<meta name="shenma-site-verification" content="811a9db62e27d9d5588af6ba6411697d_1580876562">
+		<meta name="sogou_site_verification" content="zfUvOkQpJW" />
 		<meta name="baidu-site-verification" content="p2icII6bjP" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css" rel="stylesheet" />
@@ -89,8 +89,8 @@
 						<p>不知道肚子同好是什么的新朋友们，可以搜索百科词条恋腹。就是特别喜欢肚子啦~</p>-->
 						<p>肚子同好们的生存空间越来越小了，为了提高咱们圈的凝聚力，也为刚入圈的新人找到组织。本站提供一个肚子同好基本信息的交流平台。</p>
 						<p>快来报到吧！祝大家都能找到心仪的玩伴，一起愉快的玩耍。大家一起努力，预祝咱们圈经久不衰，繁荣昌盛！</p>
-						<p>管理员会主动联系你，审核通过后会给你一个身份验证码，以后登录用。管理员qq2435898551</p>
-						
+						<p>管理员qq2435898551。招募管理员，目前主要做推广和管理，成员列表置顶。</p>
+
 						<!--<p>注：本站还在开发过程，过一段时间会招募一些核验真实性的管理员。会增加点赞，踩和评论功能，方便刷选优质同好。</p>
 -->
 					</li>
@@ -215,13 +215,13 @@
 								昵称
 							</div>
 							<div class="w_15 w_left">
-								认证
-							</div>
-							<div class="w_15 w_left">
 								性别
 							</div>
 							<div class="w_15 w_left">
 								属性
+							</div>
+							<div class="w_15 w_left">
+								要求
 							</div>
 							<div class="w_35 w_left">
 								地区
@@ -237,15 +237,14 @@
 										{{list.name}}
 									</div>
 									<div class="w_15 w_left">
-										{{list.permiss}}
-									</div>
-									<div class="w_15 w_left">
 										{{list.sex}}
 									</div>
 									<div class="w_15 w_left">
 										{{list.shuxing}}
 									</div>
-
+									<div class="w_15 w_left">
+										{{list.sexyaoqiu}}
+									</div>
 									<div class="w_35 w_left">
 										{{list.province}}-{{list.city}}
 									</div>
@@ -267,21 +266,16 @@
 									</div>
 
 									<div class="w_15">年龄</div>
-									<div class="w_15 w_left w_right">
+									<div class="w_35 w_left w_right">
 										{{list.age}}
 									</div>
 									<div class="w_15">
 										目的
 									</div>
-									<div class="w_20 w_left w_right">
+									<div class="w_35 w_left w_right">
 										{{list.mudi}}
 									</div>
-									<div class="w_20">
-										性别要求
-									</div>
-									<div class="w_15 w_left">
-										{{list.sexyaoqiu}}
-									</div>
+									
 									<div style="width: 100%;display: block;">
 										<p style="padding-left: 4px;">介绍：{{list.info}}
 										</p>
@@ -930,37 +924,39 @@
 		</script>
 		<script type="text/javascript">
 			mui('#cxz').on('tap', 'p', function() {
-				mui.prompt("请输入qq","","",['取消', '确定'],function(e){
-					if (e.index == 1) {
-                        for (var i = 0; i < list.members.length; i++) {
-                        	
-                        	if(list.members[i].qq == e.value){
-                        		mui.toast("核对成功");
-                        		list.xinzeng = true;
-                        		localStorage.setItem("xinzeng",true);
-                        		return ;
-                        	}
-                        }
-                        mui.alert("查找不到，请新增用户")
-                    } else {
-                        mui.toast('你点了取消按钮');
-                    }
+				mui.prompt("请输入qq", "", "", ['取消', '确定'], function(e) {
+					if(e.index == 1) {
+						for(var i = 0; i < list.members.length; i++) {
+
+							if(list.members[i].qq == e.value) {
+								mui.toast("核对成功");
+								list.xinzeng = true;
+								localStorage.setItem("xinzeng", true);
+								return;
+							}
+						}
+						mui.alert("查找不到，请新增用户")
+					} else {
+						mui.toast('你点了取消按钮');
+					}
 				});
-				
+
 			});
-			function dataQuchong(data){
+
+			function dataQuchong(data) {
 				let num = 0;
-				for (var i = 0; i < data.length  ; i++) {
-					for (var j = i+1; j < data.length; j++) {
-						if(data[i].qq == data[j].qq){
-							data.splice(j ,1);
+				for(var i = 0; i < data.length; i++) {
+					for(var j = i + 1; j < data.length; j++) {
+						if(data[i].qq == data[j].qq) {
+							data.splice(j, 1);
 						}
 					}
 				}
 			}
+
 			function dataSort(data) {
 				function sort(a, b) {
-					function getQuan(a){
+					function getQuan(a) {
 						if(a.permiss == "虚假")
 							return 0;
 						if(a.permiss == "未验证")
@@ -972,10 +968,10 @@
 						if(a.permiss == "管理")
 							return 4;
 					}
-					if((getQuan(a)-getQuan(b))!=0){
-						return getQuan(b)-getQuan(a);
-					}else{
-						return getQuan(b)-getQuan(a);
+					if((getQuan(a) - getQuan(b)) != 0) {
+						return getQuan(b) - getQuan(a);
+					} else {
+						return getQuan(b) - getQuan(a);
 					}
 				}
 				data.sort(sort);
@@ -985,14 +981,14 @@
 			dataSort(list.members)
 		</script>
 		<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?367f64ddc246fdc45409c4f27df7fe53";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?367f64ddc246fdc45409c4f27df7fe53";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
 
 	</body>
 
