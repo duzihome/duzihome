@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+
+	<head>
+		<script src="real.js?id=1" type="text/javascript" charset="utf-8"></script>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="https://cdn.bootcss.com/mui/3.7.1/css/mui.min.css" rel="stylesheet" />
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+	</head>
+	<style type="text/css">
+		/*解决vue渲染闪烁*/
+		
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+	<style type="text/css">
+		.w_15,
+		.w_20,
+		.w_35,
+		.w_25,
+		.w_80,
+		.w_30 {
+			display: inline;
+			float: left;
+			font-size: 14px;
+			color: #424242;
+			text-align: center;
+			line-height: 30px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		
+		.w_left {
+			border-left: 1px dashed #b3b3b3;
+		}
+		
+		.w_right {
+			border-right: 1px solid #767676;
+		}
+		
+		.w_15 {
+			width: 15%;
+		}
+		
+		.w_20 {
+			width: 20%;
+		}
+		
+		.w_25 {
+			width: 25%;
+		}
+		
+		.w_30 {
+			width: 30%;
+		}
+		
+		.w_35 {
+			width: 35%;
+		}
+		
+		.w_80 {
+			text-align: left;
+			width: 80%;
+		}
+		
+		.cylists {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+		
+		.cylist {
+			margin-left: 0px!important;
+			margin-right: 0px!important;
+			padding-top: 3px!important;
+			padding-bottom: 3px!important;
+		}
+		
+		.cylistdetail {
+			padding-top: 0px!important;
+			;
+			padding-bottom: 0px!important;
+			;
+		}
+	</style>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">肚子同好管理员内测版</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<div width="100%">
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">
+							条件筛选：共计 <span id="tongji"></span>人
+						</li>
+					</ul>
+
+					<select id="choose_sex" onchange="choose_change()" style="width: 32%;margin-bottom: 3px;">
+						<option value="">性别</option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+					<select id="choose_shuxing" onchange="choose_change()" style="width: 32%;margin-bottom: 3px;">
+						<option value="">属性</option>
+						<option value="施与">施与</option>
+						<option value="接受">接受</option>
+						<option value="双向">双向</option>
+						<option value="内痛">内痛</option>
+						<option value="入腹">入腹(吞和被吞)</option>
+
+					</select>
+					<select id="choose_province" onchange="choose_change()" style="width: 32.8%;margin-bottom: 3px;">
+						<option value="">省份</option>
+					</select>
+					<form class="mui-input-group">
+						<div class="mui-input-row">
+							<label>查询qq：</label>
+							<input class="mui-input-clear" onchange="choose_change()" placeholder="输入qq查询" type="number" id="qq" value="" />
+						</div>
+					</form>
+
+				</div>
+
+				<div id="list" v-cloak>
+					<ul class="mui-table-view">
+						<li class="mui-table-view-cell">成员检索：点击人物展开详情</li>
+						<li class="mui-table-view-cell cylists mui-collapse">
+							<div class="w_20">
+								昵称
+							</div>
+							<div class="w_15 w_left">
+								性别
+							</div>
+							<div class="w_15 w_left">
+								属性
+							</div>
+							<div class="w_15 w_left">
+								要求
+							</div>
+							<div class="w_35 w_left">
+								地区
+							</div>
+						</li>
+						<li v-for="list in members" class="mui-table-view-cell cylists mui-collapse">
+							<a class="cylist" href="#">
+								<div class="w_20">
+									{{list.name}}
+								</div>
+								<div class="w_15 w_left">
+									{{list.sex}}
+								</div>
+								<div class="w_15 w_left">
+									{{list.shuxing}}
+								</div>
+								<div class="w_15 w_left">
+									{{list.sexyaoqiu}}
+								</div>
+								<div class="w_35 w_left">
+									{{list.province}}-{{list.city}}
+								</div>
+							</a>
+							<div class="mui-collapse-content cylistdetail">
+								<div class="w_20">QQ</div>
+								<div v-if="list.qqopen == '公开'" class="w_30 w_left w_right">
+									{{list.qq}}
+								</div>
+								<div v-else class="w_30 w_left w_right">
+									{{list.qqopen}}
+								</div>
+								<div class="w_15">
+									部位
+								</div>
+								<div class="w_35 w_left">
+									{{list.buwei}}
+								</div>
+								<div class="w_20">年龄</div>
+								<div class="w_30 w_left w_right">
+									{{list.age}}
+								</div>
+								<div class="w_15">
+									目的
+								</div>
+								<div class="w_35 w_left w_right">
+									{{list.mudi}}
+								</div>
+								<div v-if="list.info" style="width: 100%;display: block;">
+									<p style="padding-left: 10px;line-height: 24px;">介绍：{{list.info}}
+									</p>
+								</div>
+								<hr style="margin-top: 0px;margin-bottom: 0px;" />
+							</div>
+						</li>
+				</div>
+				</ul>
+			</div>
+
+		</div>
+
+		</div>
+		<script src="https://cdn.bootcss.com/mui/3.7.1/js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var list = new Vue({
+				el: '#list',
+				data: {
+					members: []
+				}
+			});
+
+			function choose_change() {
+				let sex = document.getElementById("choose_sex").value;
+				let shuxing = document.getElementById("choose_shuxing").value;
+				let province = document.getElementById("choose_province").value;
+				let qq = document.getElementById("qq").value
+
+				let result = real;
+				if(sex != "") {
+					result = result.filter(item => item.sex == sex);
+				}
+				if(shuxing != "") {
+					result = result.filter(item => item.shuxing == shuxing);
+				}
+				if(province != "") {
+					result = result.filter(item => item.province == province);
+				}
+				if(qq != "") {
+					result = result.filter(item => item.qq == qq);
+				}
+				document.getElementById("tongji").innerText = result.length;
+
+				list.members = result;
+
+			}
+
+			let choose_city_item = document.getElementById("choose_province");
+
+			let choose_city = ["北京", "上海", "天津", "重庆", "黑龙江", "吉林", "辽宁", "内蒙古", "河北", "山西", "陕西", "山东", "新疆", "西藏", "青海", "甘肃", "宁夏", "河南", "江苏", "湖北", "浙江", "安徽", "福建", "江西", "湖南", "贵州", "四川", "广东", "云南", "广西", "海南", "香港", "澳门", "台湾"];
+
+			for(var i = 0; i < choose_city.length; i++) {
+				choose_city_item.options.add(new Option(choose_city[i], choose_city[i]))
+			}
+			choose_change()
+		</script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "https://hm.baidu.com/hm.js?367f64ddc246fdc45409c4f27df7fe53";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+		
+	</body>
+
+</html>
